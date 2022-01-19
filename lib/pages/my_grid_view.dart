@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'future_then_page.dart';
+
 class MyGridView extends StatelessWidget {
   List<Color> colors = [
     Colors.red,
@@ -10,6 +12,15 @@ class MyGridView extends StatelessWidget {
     Colors.amber,
     Colors.purple,
     Colors.blue,
+  ];
+
+  List<String> imageUrl = [
+    'imgaes/something.jpg'
+        'imgaes/something.jpg'
+        'imgaes/something.jpg'
+        'imgaes/something.jpg'
+        'imgaes/something.jpg'
+        'imgaes/something.jpg'
   ];
 
   MyGridView({Key? key}) : super(key: key);
@@ -25,14 +36,23 @@ class MyGridView extends StatelessWidget {
         child: GridView.builder(
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 2,
+            childAspectRatio: 2 / 2,
             crossAxisSpacing: 8,
             mainAxisSpacing: 8,
-            childAspectRatio: 1.5 / 2,
           ),
           itemCount: colors.length,
           itemBuilder: (context, index) {
+            if (index == 0) {
+              return Container(
+                color: colors[0],
+                child: const Center(
+                  child: FutureThenPage(),
+                ),
+              );
+            }
+            final colorsData = colors[index];
             return Container(
-              color: colors[index],
+              color: colorsData,
             );
           },
         ),
