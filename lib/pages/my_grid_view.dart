@@ -12,6 +12,8 @@ class MyGridView extends StatelessWidget {
     Colors.blue,
   ];
 
+  MyGridView({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,19 +25,14 @@ class MyGridView extends StatelessWidget {
         child: GridView.builder(
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 2,
-            mainAxisSpacing: 8.0,
-            crossAxisSpacing: 8.0,
-            childAspectRatio: 0.7,
+            crossAxisSpacing: 8,
+            mainAxisSpacing: 8,
+            childAspectRatio: 1.5 / 2,
           ),
           itemCount: colors.length,
           itemBuilder: (context, index) {
             return Container(
-              // height: 100,
-              // width: 100,
-              decoration: BoxDecoration(
-                color: colors.elementAt(index),
-                borderRadius: BorderRadius.circular(20),
-              ),
+              color: colors[index],
             );
           },
         ),
