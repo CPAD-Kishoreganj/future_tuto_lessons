@@ -10,29 +10,16 @@ class FutureThenPage extends StatefulWidget {
 }
 
 class _FutureThenPageState extends State<FutureThenPage> {
-  Future<void> getResult() async {
-    Future.delayed(const Duration(seconds: 3), () {
-      print("This is after 3 seconds");
-    }).then(
-      (value) => Future.delayed(const Duration(seconds: 2), () {
-        print("This should comes last");
-      }).catchError((error) {
-        print(error);
-      }),
-    );
-
-    print("This should run first");
-  }
-
   Future<void> getData() async {
-    await Future.delayed(const Duration(seconds: 3), () {
-      print("This is after 3 seconds");
-    });
-    await Future.delayed(const Duration(seconds: 2), () {
-      print("This is after 2 seconds");
+    Future.delayed(Duration(seconds: 3), () {
+      print("This message will print after 3 seconds");
+    }).then((value) {
+      Future.delayed(Duration(seconds: 2), () {
+        print("This message will print after 2 seconds");
+      });
     });
 
-    print("Hello world");
+    print('This is a random message');
   }
 
   @override
@@ -44,9 +31,8 @@ class _FutureThenPageState extends State<FutureThenPage> {
       body: Center(
         child: ElevatedButton(
           child: const Text("Click"),
-          onPressed: () async {
-            await getData();
-            print('object');
+          onPressed: () {
+            getData();
           },
         ),
       ),

@@ -1,8 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:future_tuto_lessons/Services/api_services.dart';
+import 'package:future_tuto_lessons/models/product.dart';
 
-class AllProductsScreen extends StatelessWidget {
+class AllProductsScreen extends StatefulWidget {
   const AllProductsScreen({Key? key}) : super(key: key);
+
+  @override
+  State<AllProductsScreen> createState() => _AllProductsScreenState();
+}
+
+class _AllProductsScreenState extends State<AllProductsScreen> {
+  late Future<List<Product>> allProducts;
+
+  @override
+  void initState() {
+    super.initState();
+    allProducts = ApiServices().getProducts();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -11,22 +25,18 @@ class AllProductsScreen extends StatelessWidget {
         title: const Text('All Products'),
       ),
       body: FutureBuilder(
-        future: ApiServices().getProducts(),
+        future: allProducts,
         builder: (context, AsyncSnapshot snapshot) {
           if (snapshot.hasData) {
             return ListView.builder(
               itemCount: snapshot.data.length,
               itemBuilder: (context, index) {
+                Product product = snapshot.data![index];
                 return Padding(
                   padding: const EdgeInsets.all(4.0),
                   child: ListTile(
-                    title: Text(snapshot.data[index]['title']),
-                    tileColor: Colors.amberAccent,
-                    leading: Image.network(
-                      snapshot.data[index]['image'],
-                      fit: BoxFit.cover,
-                      width: 40,
-                    ),
+                    title: Text(product.title),
+                    leading: Image.network(product.image),
                   ),
                 );
               },

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:future_tuto_lessons/screens/all_products_screen.dart';
-
-import 'pages/my_grid_view.dart';
+import 'package:future_tuto_lessons/pages/stream_page.dart';
+import 'pages/future_then_page.dart';
+import 'screens/all_products_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.orange,
       ),
-      home: MyGridView(),
+      home: StreamPage(),
     );
   }
 }

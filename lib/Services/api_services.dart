@@ -2,14 +2,22 @@
 
 import 'dart:convert';
 
+import 'package:future_tuto_lessons/models/product.dart';
 import 'package:http/http.dart' as http;
 
 class ApiServices {
-  Future getProducts() async {
+  Future<List<Product>> getProducts() async {
     final allProductsUrl = Uri.parse('https://fakestoreapi.com/products');
     final response = await http.get(allProductsUrl);
-    print(response.statusCode);
-    print(response.body);
-    return json.decode(response.body);
+    List<Product> allProducts = [];
+    List body = json.decode(response.body);
+
+    //print(body);
+
+    for (var product in body) {
+      allProducts.add(Product.fromJson(product));
+    }
+    //print(allProducts);
+    return allProducts;
   }
 }

@@ -15,12 +15,12 @@ class MyGridView extends StatelessWidget {
   ];
 
   List<String> imageUrl = [
-    'imgaes/something.jpg'
-        'imgaes/something.jpg'
-        'imgaes/something.jpg'
-        'imgaes/something.jpg'
-        'imgaes/something.jpg'
-        'imgaes/something.jpg'
+    'imgaes/something.jpg',
+    'imgaes/something.jpg',
+    'imgaes/something.jpg',
+    'imgaes/something.jpg',
+    'imgaes/something.jpg',
+    'imgaes/something.jpg',
   ];
 
   MyGridView({Key? key}) : super(key: key);
